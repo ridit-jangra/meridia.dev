@@ -1,3 +1,6 @@
+"use client"
+
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import { SparklesIcon } from "lucide-react"
 import { Balancer } from "react-wrap-balancer"
@@ -7,7 +10,115 @@ import { Icons } from "@/components/icons"
 import SiteFooter from "@/components/site-footer"
 import SiteHeader from "@/components/site-header"
 
-export default async function DownloadPage() {
+interface ReleaseAsset {
+  name: string
+  browser_download_url: string
+  content_type: string
+}
+
+interface Release {
+  assets: ReleaseAsset[]
+  html_url: string
+}
+
+export default function DownloadPage() {
+  const [release, setRelease] = useState<Release | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    async function fetchLatestRelease() {
+      try {
+        const response = await fetch(
+          "https://api.github.com/repos/ridit-jangra/Meridia/releases/latest",
+          {
+            headers: {
+              Accept: "application/vnd.github+json",
+              "User-Agent": "Meridia-Download-Page",
+            },
+          }
+        )
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch latest release")
+        }
+
+        const data = await response.json()
+        setRelease(data)
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "An error occurred")
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchLatestRelease()
+  }, [])
+
+  const getAssetUrl = (platform: "windows" | "linux") => {
+    if (!release?.assets.length)
+      return (
+        release?.html_url || "https://github.com/ridit-jangra/Meridia/releases"
+      )
+
+    const assets = release.assets
+    let assetUrl = ""
+
+    if (platform === "windows") {
+      const exeAsset = assets.find((asset) =>
+        asset.name.toLowerCase().endsWith(".exe")
+      )
+      assetUrl = exeAsset ? exeAsset.browser_download_url : release.html_url
+    } else if (platform === "linux") {
+      const appImageAsset = assets.find((asset) =>
+        asset.name.toLowerCase().endsWith(".appimage")
+      )
+      const debAsset = assets.find((asset) =>
+        asset.name.toLowerCase().endsWith(".deb")
+      )
+      assetUrl = appImageAsset
+        ? appImageAsset.browser_download_url
+        : debAsset
+        ? debAsset.browser_download_url
+        : release.html_url
+    }
+
+    return assetUrl
+  }
+
+  if (loading) {
+    return (
+      <div className="flex min-h-screen flex-col">
+        <SiteHeader />
+        <section className="flex min-h-[50vh] items-center justify-center">
+          <p>Loading latest release...</p>
+        </section>
+        <SiteFooter />
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="flex min-h-screen flex-col">
+        <SiteHeader />
+        <section className="flex min-h-[50vh] items-center justify-center">
+          <p>
+            Error: {error}. Please visit{" "}
+            <Link
+              href="https://github.com/ridit-jangra/Meridia/releases"
+              className="underline"
+            >
+              GitHub Releases
+            </Link>{" "}
+            manually.
+          </p>
+        </section>
+        <SiteFooter />
+      </div>
+    )
+  }
+
   return (
     <div className="flex min-h-screen flex-col">
       <SiteHeader />
@@ -28,12 +139,12 @@ export default async function DownloadPage() {
           </span>
         </Balancer>
         <div className="flex flex-col items-center sm:flex-row sm:space-x-4">
-          <Link href="" target="_blank">
+          <Link href={getAssetUrl("windows")} target="_blank">
             <Button variant="fancy" size="lg" className="sm:mt-12">
               <Icons.windows className="mr-2 h-4 w-4" /> Download for Windows
             </Button>
           </Link>
-          <Link href="" target="_blank">
+          <Link href={getAssetUrl("linux")} target="_blank">
             <Button variant="fancy" size="lg" className="sm:mt-12">
               <Icons.linux className="mr-2 h-4 w-4" /> Download for Linux
             </Button>
