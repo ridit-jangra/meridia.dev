@@ -1,0 +1,53 @@
+"use client"
+
+import Link from "next/link"
+import { SparklesIcon } from "lucide-react"
+import { Balancer } from "react-wrap-balancer"
+
+import { Icons } from "./icons"
+import { Button } from "./ui/button"
+
+function SiteHero() {
+  return (
+    <section className="flex w-full flex-col items-center ">
+      <div className="gradient-box mt-4 rounded-full px-6 py-2.5 text-sm font-medium">
+        <span className="relative z-30">
+          Now Releasing Meridia{" "}
+          <SparklesIcon className="mb-1 inline-block h-4 w-4" />
+        </span>
+      </div>
+      <Balancer
+        as="h1"
+        className="mt-8 px-6 text-center font-sans text-4xl font-bold tracking-tight drop-shadow-sm sm:text-5xl lg:font-heading lg:text-6xl lg:tracking-normal"
+      >
+        <p className="relative inline-block">
+          <span className="z-0 bg-gradient-to-b from-foreground  to-foreground/70 bg-clip-text pb-1 text-transparent dark:from-white dark:to-white">
+            Magically
+          </span>
+        </p>{" "}
+        {""}
+        Supercharge Your <br /> Coding experience with {""}
+        <span className="z-0 bg-gradient-to-r from-foreground to-foreground/60 bg-clip-text pb-1 text-transparent dark:from-white dark:to-white">
+          AI
+        </span>
+      </Balancer>
+      <Balancer className="mt-7 max-w-[30rem] px-6 text-center leading-normal text-muted-foreground sm:text-[1.50rem] sm:leading-8">
+        Meridia is a code editor that uses AI to make your Program Magical.
+      </Balancer>
+      <div className="flex flex-col items-center sm:flex-row sm:space-x-4">
+        <Link href="/download">
+          <Button size="lg" className="mb-4 mt-10 sm:mb-0 sm:mt-12">
+            Start coding
+          </Button>
+        </Link>
+        <Link href="https://github.com/ridit-jangra/Meridia" target="_blank">
+          <Button variant="fancy" size="lg" className="sm:mt-12">
+            <Icons.gitHub className="mr-2 h-4 w-4" /> Github
+          </Button>
+        </Link>
+      </div>
+    </section>
+  )
+}
+
+export default SiteHero
