@@ -2,7 +2,6 @@
 
 import React from "react"
 import Link from "next/link"
-import { Copyright } from "lucide-react"
 
 import SiteAssets from "./site-assets"
 
