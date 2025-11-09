@@ -12,11 +12,18 @@ function SiteHeader() {
         <h4 className="ml-2 font-heading text-2xl">Meridia</h4>
       </Link>
 
-      <Link href={"/download"}>
-        <Button variant="fancy" size="lg">
-          Download
-        </Button>
-      </Link>
+      <div className="flex items-center justify-center gap-3">
+        <Link href={"https://docs.meridia.dev"}>
+          <Button variant="fancy" size="lg">
+            Documentation
+          </Button>
+        </Link>
+        <Link href={"/download"}>
+          <Button variant="fancy" size="lg">
+            Download
+          </Button>
+        </Link>
+      </div>
     </header>
   )
 }
