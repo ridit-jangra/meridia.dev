@@ -5,6 +5,7 @@ import { SparklesIcon } from "lucide-react"
 import { Balancer } from "react-wrap-balancer"
 
 import { Icons } from "./icons"
+import SiteAssets from "./site-assets"
 import { Button } from "./ui/button"
 
 function SiteHero() {
@@ -45,6 +46,12 @@ function SiteHero() {
             <Icons.gitHub className="mr-2 h-4 w-4" /> Github
           </Button>
         </Link>
+      </div>
+      <div>
+        <SiteAssets
+          type="hero-image"
+          className="mt-10 rounded-xl border-[3px] border-gray-300"
+        />
       </div>
     </section>
   )

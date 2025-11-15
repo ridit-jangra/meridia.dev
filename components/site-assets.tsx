@@ -21,13 +21,26 @@ function SiteAssets({
   }, [resolvedTheme])
 
   return (
-    <Image
-      src={`/logos/meridia-${theme === "dark" ? "white" : "black"}.svg`}
-      alt="logo"
-      className={cn("", className)}
-      width={30}
-      height={30}
-    />
+    <>
+      {type === "icon" && (
+        <Image
+          src={`/logos/meridia-${theme === "dark" ? "white" : "black"}.svg`}
+          alt="logo"
+          className={cn("", className)}
+          width={30}
+          height={30}
+        />
+      )}
+      {type === "hero-image" && (
+        <Image
+          src={`/screenshot/meridia-light.jpg`}
+          alt="hero image"
+          className={cn("", className)}
+          width={1100}
+          height={100}
+        />
+      )}
+    </>
   )
 }
 
