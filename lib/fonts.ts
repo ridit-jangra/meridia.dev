@@ -24,11 +24,6 @@ type RequestOptions<BodyType = undefined> = {
   showErrorToast?: boolean
 }
 
-type ErrorResponse = {
-  error: string
-}
-
-// Generic function to handle the request
 async function request<ResponseType, BodyType = undefined>(
   url: string,
   method: string,

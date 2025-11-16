@@ -48,10 +48,7 @@ function SiteHero() {
         </Link>
       </div>
       <div>
-        <SiteAssets
-          type="hero-image"
-          className="mt-10 rounded-xl border-[3px] border-gray-300"
-        />
+        <SiteAssets type="hero-image" className="mt-10 rounded-xl" />
       </div>
     </section>
   )

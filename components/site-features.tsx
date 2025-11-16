@@ -1,13 +1,5 @@
 import React from "react"
-import { CodeIcon } from "@radix-ui/react-icons"
-import {
-  Bug,
-  GitBranch,
-  LanguagesIcon,
-  PenLine,
-  SparklesIcon,
-  Terminal,
-} from "lucide-react"
+import { Bug, GitBranch, PenLine, SparklesIcon, Terminal } from "lucide-react"
 
 const FEATURES = [
   {
@@ -61,7 +53,7 @@ function SiteFeatures() {
         </p>
       </div>
       <div className="py-2" />
-      <div className="mx-auto grid justify-center gap-4 sm:grid-cols-2 md:max-w-[64rem] md:grid-cols-3">
+      <div className="mx-auto grid justify-center gap-4 sm:grid-cols-2 md:max-w-5xl md:grid-cols-3">
         {FEATURES.map((feature) => (
           <div
             key={feature.title}

@@ -33,7 +33,7 @@ function SiteAssets({
       )}
       {type === "hero-image" && (
         <Image
-          src={`/screenshot/meridia-light.jpg`}
+          src={`https://github.com/ridit-jangra/Meridia/raw/main/resources/whole.jpg`}
           alt="hero image"
           className={cn("", className)}
           width={1100}
