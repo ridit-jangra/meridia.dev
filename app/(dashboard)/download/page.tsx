@@ -9,8 +9,9 @@ import { Badge } from "@/components/ui/badge";
 import { AppWindow, Download, DownloadIcon, Pentagon } from "lucide-react";
 import Image from "next/image";
 import TargetCursor from "@/components/TargetCursor";
-import Beams from "@/components/Beams";
-import DarkVeil from "@/components/DarkVeil";
+import dynamic from "next/dynamic";
+
+const DarkVeil = dynamic(() => import("@/components/DarkVeil"), { ssr: false });
 
 export default function Page() {
   const latest = "2.4";
