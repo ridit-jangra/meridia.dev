@@ -31,11 +31,11 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
   const activeStrengthRef = useRef({ current: 0 });
 
   const isMobile = useMemo(() => {
-    const hasTouchScreen =
-      "ontouchstart" in window || navigator.maxTouchPoints > 0;
+    if (typeof window === "undefined") return false;
+    const hasTouchScreen = navigator.maxTouchPoints > 0;
     const isSmallScreen = window.innerWidth <= 768;
     const userAgent =
-      navigator.userAgent || navigator.vendor || (window as any).opera;
+      navigator.userAgent || navigator.vendor || (document as any).opera;
     const mobileRegex =
       /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i;
     const isMobileUserAgent = mobileRegex.test(userAgent.toLowerCase());
@@ -84,13 +84,11 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
       if (spinTl.current) {
         spinTl.current.kill();
       }
-      spinTl.current = gsap
-        .timeline({ repeat: -1 })
-        .to(cursor, {
-          rotation: "+=360",
-          duration: spinDuration,
-          ease: "none",
-        });
+      spinTl.current = gsap.timeline({ repeat: -1 }).to(cursor, {
+        rotation: "+=360",
+        duration: spinDuration,
+        ease: "none",
+      });
     };
 
     createSpinTimeline();
@@ -129,7 +127,7 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
     tickerFnRef.current = tickerFn;
 
     const moveHandler = (e: MouseEvent) => moveCursor(e.clientX, e.clientY);
-    window.addEventListener("mousemove", moveHandler);
+    document.addEventListener("mousemove", moveHandler);
 
     const scrollHandler = () => {
       if (!activeTarget || !cursorRef.current) return;
@@ -144,7 +142,7 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
         currentLeaveHandler?.();
       }
     };
-    window.addEventListener("scroll", scrollHandler, { passive: true });
+    document.addEventListener("scroll", scrollHandler, { passive: true });
 
     const mouseDownHandler = () => {
       if (!dotRef.current) return;
@@ -158,8 +156,8 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
       gsap.to(cursorRef.current, { scale: 1, duration: 0.2 });
     };
 
-    window.addEventListener("mousedown", mouseDownHandler);
-    window.addEventListener("mouseup", mouseUpHandler);
+    document.addEventListener("mousedown", mouseDownHandler);
+    document.addEventListener("mouseup", mouseUpHandler);
 
     const enterHandler = (e: MouseEvent) => {
       const directTarget = e.target as Element;
@@ -287,17 +285,17 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
       target.addEventListener("mouseleave", leaveHandler);
     };
 
-    window.addEventListener("mouseover", enterHandler as EventListener);
+    document.addEventListener("mouseover", enterHandler as EventListener);
 
     return () => {
       if (tickerFnRef.current) {
         gsap.ticker.remove(tickerFnRef.current);
       }
-      window.removeEventListener("mousemove", moveHandler);
-      window.removeEventListener("mouseover", enterHandler as EventListener);
-      window.removeEventListener("scroll", scrollHandler);
-      window.removeEventListener("mousedown", mouseDownHandler);
-      window.removeEventListener("mouseup", mouseUpHandler);
+      document.removeEventListener("mousemove", moveHandler);
+      document.removeEventListener("mouseover", enterHandler as EventListener);
+      document.removeEventListener("scroll", scrollHandler);
+      document.removeEventListener("mousedown", mouseDownHandler);
+      document.removeEventListener("mouseup", mouseUpHandler);
       if (activeTarget) {
         cleanupTarget(activeTarget);
       }
@@ -322,13 +320,11 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
     if (isMobile || !cursorRef.current || !spinTl.current) return;
     if (spinTl.current.isActive()) {
       spinTl.current.kill();
-      spinTl.current = gsap
-        .timeline({ repeat: -1 })
-        .to(cursorRef.current, {
-          rotation: "+=360",
-          duration: spinDuration,
-          ease: "none",
-        });
+      spinTl.current = gsap.timeline({ repeat: -1 }).to(cursorRef.current, {
+        rotation: "+=360",
+        duration: spinDuration,
+        ease: "none",
+      });
     }
   }, [spinDuration, isMobile]);
 

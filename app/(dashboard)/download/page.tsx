@@ -21,104 +21,35 @@ export default function Page() {
   const versions = [
     {
       v: "2.4",
-      win: [
-        {
-          label: "Windows (ARM64)",
-        },
-        {
-          label: "Windows (Ax64)",
-        },
-      ],
-      linux: [
-        {
-          label: "Linux .deb (x64)",
-        },
-        {
-          label: "Linux AppImage (x64)",
-        },
-      ],
+      win: [{ label: "Windows (ARM64)" }, { label: "Windows (x64)" }],
+      linux: [{ label: "Linux .deb (x64)" }, { label: "Linux AppImage (x64)" }],
     },
     {
       v: "2.3",
-      win: [
-        {
-          label: "Windows (ARM64)",
-        },
-        {
-          label: "Windows (Ax64)",
-        },
-      ],
-      linux: [
-        {
-          label: "Linux .deb (x64)",
-        },
-        {
-          label: "Linux AppImage (x64)",
-        },
-      ],
+      win: [{ label: "Windows (ARM64)" }, { label: "Windows (x64)" }],
+      linux: [{ label: "Linux .deb (x64)" }, { label: "Linux AppImage (x64)" }],
     },
     {
       v: "2.2",
-      win: [
-        {
-          label: "Windows (ARM64)",
-        },
-        {
-          label: "Windows (Ax64)",
-        },
-      ],
-      linux: [
-        {
-          label: "Linux .deb (x64)",
-        },
-        {
-          label: "Linux AppImage (x64)",
-        },
-      ],
+      win: [{ label: "Windows (ARM64)" }, { label: "Windows (x64)" }],
+      linux: [{ label: "Linux .deb (x64)" }, { label: "Linux AppImage (x64)" }],
     },
     {
       v: "2.1",
-      win: [
-        {
-          label: "Windows (ARM64)",
-        },
-        {
-          label: "Windows (Ax64)",
-        },
-      ],
-      linux: [
-        {
-          label: "Linux .deb (x64)",
-        },
-        {
-          label: "Linux AppImage (x64)",
-        },
-      ],
+      win: [{ label: "Windows (ARM64)" }, { label: "Windows (x64)" }],
+      linux: [{ label: "Linux .deb (x64)" }, { label: "Linux AppImage (x64)" }],
     },
     {
       v: "2.0",
-      win: [
-        {
-          label: "Windows (ARM64)",
-        },
-        {
-          label: "Windows (Ax64)",
-        },
-      ],
-      linux: [
-        {
-          label: "Linux .deb (x64)",
-        },
-        {
-          label: "Linux AppImage (x64)",
-        },
-      ],
+      win: [{ label: "Windows (ARM64)" }, { label: "Windows (x64)" }],
+      linux: [{ label: "Linux .deb (x64)" }, { label: "Linux AppImage (x64)" }],
     },
   ];
 
   return (
     <div className="min-h-screen w-full bg-black text-white">
-      <div style={{ width: "100%", height: "100vh", position: "relative" }}>
+      {/* Fixed background shader */}
+      <div className="fixed inset-0 z-0">
         <DarkVeil
           hueShift={0}
           noiseIntensity={0}
@@ -128,26 +59,22 @@ export default function Page() {
           warpAmount={0}
         />
       </div>
-      <TargetCursor
-        spinDuration={2}
-        hideDefaultCursor
-        parallaxOn
-        hoverDuration={0.2}
-      />
 
-      <div className="absolute top-0 w-full px-25 pt-20">
+      {/* Scrollable content */}
+      <div className="relative z-10 w-full px-24 pt-20 pb-20">
         <div className="flex items-center gap-15 pb-20 border-b border-white/13 text-white">
           <Image src={MeridiaLogo} alt="Meridia" width={150} height={150} />
           <div className="flex flex-col gap-2">
             <span className="text-[2.3rem] font-medium">Download Meridia</span>
             <span className="text-white/80 text-[1.3rem] mb-1">
-              Available for Windows, and Linux.
+              Available for Windows and Linux.
             </span>
-            <button className="bg-white cursor-target text-black rounded-full py-2 hover:bg-white/85 transition-colors cursor-pointer flex items-center justify-center gap-2">
+            <button className="bg-white cursor-target text-black rounded-full py-2 px-6 hover:bg-white/85 transition-colors cursor-pointer flex items-center justify-center gap-2">
               Download for Windows <DownloadIcon />
             </button>
           </div>
         </div>
+
         <Accordion
           type="single"
           collapsible
@@ -166,24 +93,25 @@ export default function Page() {
                   {version.v === latest && (
                     <Badge
                       className="text-[13px] px-3 py-0.5 mt-1"
-                      variant={"secondary"}
+                      variant="secondary"
                     >
                       Latest
                     </Badge>
                   )}
                 </span>
               </AccordionTrigger>
-              <AccordionContent className="grid grid-cols-2 w-full items-center gap-5">
-                <div className="bg-neutral-900 rounded-2xl h-full w-full">
+              <AccordionContent className="grid grid-cols-2 w-full items-start gap-5">
+                {/* Windows */}
+                <div className="bg-neutral-900 rounded-2xl w-full">
                   <span className="flex items-center gap-2 text-lg pb-2 pt-4 border-b border-white/13 px-4 mb-1">
                     <AppWindow />
                     Windows
                   </span>
                   <div className="flex flex-col">
-                    {version.win.map((w, i) => (
+                    {version.win.map((w, j) => (
                       <span
-                        key={i}
-                        className="w-full text-[15px] cursor-target px-4 py-3 hover:bg-neutral-800 transition-colors rounded-br-2xl rounded-bl-2xl cursor-pointer flex items-center justify-between text-white/30 hover:text-white/90"
+                        key={j}
+                        className="w-full text-[15px] cursor-target px-4 py-3 hover:bg-neutral-800 transition-colors last:rounded-b-2xl cursor-pointer flex items-center justify-between text-white/30 hover:text-white/90"
                       >
                         <p className="text-white/90">{w.label}</p>
                         <Download size={21} />
@@ -191,16 +119,18 @@ export default function Page() {
                     ))}
                   </div>
                 </div>
-                <div className="bg-neutral-900 rounded-2xl h-full w-full">
+
+                {/* Linux */}
+                <div className="bg-neutral-900 rounded-2xl w-full">
                   <span className="flex items-center gap-2 text-lg pb-2 pt-4 border-b border-white/13 px-4 mb-1">
                     <Pentagon />
                     Linux
                   </span>
                   <div className="flex flex-col">
-                    {version.linux.map((w, i) => (
+                    {version.linux.map((w, j) => (
                       <span
-                        key={i}
-                        className="w-full cursor-target text-[15px] px-4 py-3 hover:bg-neutral-800 transition-colors rounded-br-2xl rounded-bl-2xl cursor-pointer flex items-center justify-between text-white/30 hover:text-white/90"
+                        key={j}
+                        className="w-full cursor-target text-[15px] px-4 py-3 hover:bg-neutral-800 transition-colors last:rounded-b-2xl cursor-pointer flex items-center justify-between text-white/30 hover:text-white/90"
                       >
                         <p className="text-white/90">{w.label}</p>
                         <Download size={21} />
@@ -213,6 +143,13 @@ export default function Page() {
           ))}
         </Accordion>
       </div>
+
+      <TargetCursor
+        spinDuration={2}
+        hideDefaultCursor
+        parallaxOn
+        hoverDuration={0.2}
+      />
     </div>
   );
 }
