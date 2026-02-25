@@ -8,6 +8,7 @@ import {
 } from "next/font/google";
 import "./globals.css";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { Navbar } from "@/components/Navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -50,6 +51,7 @@ export default function RootLayout({
         >
           {children}
         </body>
+        {/* <Navbar /> */}
       </TooltipProvider>
     </html>
   );

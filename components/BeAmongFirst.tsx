@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, type Variants } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -28,6 +29,8 @@ const item: Variants = {
 };
 
 export function BeAmongFirst() {
+  const router = useRouter();
+
   return (
     <motion.div
       variants={container}
@@ -50,9 +53,8 @@ export function BeAmongFirst() {
 
       <motion.button
         variants={item}
-        whileHover={{ scale: 1.04 }}
-        whileTap={{ scale: 0.97 }}
         className="bg-white text-black text-2xl rounded-3xl font-jetbrains px-7 py-3 hover:bg-white/90 transition-colors cursor-pointer z-5"
+        onClick={() => router.push("/download")}
       >
         Get Early Access
       </motion.button>

@@ -1,9 +1,9 @@
 "use client";
 
-import { DitherCursor } from "@/components/DitherCursor";
+import { DitherCursor } from "@/components/custom/DitherCursor";
 import { ArrowUpRight } from "lucide-react";
-import ShinyText from "./ShinyText";
-import Grainient from "@/components/Grainient";
+import ShinyText from "./react-bits/ShinyText";
+import Grainient from "@/components/react-bits/Grainient";
 import { useRouter } from "next/navigation";
 import { motion, type Variants } from "framer-motion";
 
@@ -101,6 +101,9 @@ export function Hero() {
               whileHover={{ y: -2, opacity: 1 }}
               whileTap={{ scale: 0.98 }}
               className="hover:text-white cursor-pointer flex items-center gap-2 relative after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full"
+              onClick={() => {
+                router.push(t === "Documentation" ? "/docs" : "/");
+              }}
             >
               {t}
               <motion.span

@@ -3,81 +3,78 @@ export function Files() {
     <div className="relative flex h-full items-center justify-center mask-r-from-80% mask-l-from-80%">
       <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 overflow-hidden">
         <Line opacity={0} x="800%" />
-        <Line opacity={0} x="800%" />
-        <Line opacity={0.3525} x="706%" />
-        <Line opacity={0.8025} x="586%" />
-        <Line opacity={1} x="466%" />
+        <Line opacity={0.18} x="760%" />
+        <Line opacity={0.42} x="690%" />
+        <Line opacity={0.78} x="560%" />
+        <Line opacity={1} x="430%" />
       </div>
 
       <div className="relative z-10 flex items-end gap-12">
-        {/* Folder */}
-        <div
-          className="relative cursor-pointer"
-          style={{ perspective: 1000, opacity: 1, transform: "none" }}
-        >
+        {/* Workspace Folder */}
+        <div className="relative cursor-pointer" style={{ perspective: 1000 }}>
           <div
             className="relative"
-            style={{ width: 72, height: 54, transformStyle: "preserve-3d" }}
+            style={{ width: 78, height: 56, transformStyle: "preserve-3d" }}
           >
-            <div className="absolute inset-0 rounded-lg bg-gradient-to-b from-amber-400 to-amber-500 shadow-sm dark:from-amber-500 dark:to-amber-600">
+            <div className="absolute inset-0 rounded-xl bg-gradient-to-b from-[#1a2a4a] to-[#0c1220] shadow-sm ring-1 ring-white/10">
               <div
-                className="absolute left-1.5 rounded-t-sm bg-gradient-to-b from-amber-300 to-amber-400 dark:from-amber-400 dark:to-amber-500"
-                style={{ top: -8, width: 26, height: 10 }}
+                className="absolute left-2 rounded-t-md bg-gradient-to-b from-[#294a8a] to-[#17315f]"
+                style={{ top: -8, width: 30, height: 11 }}
               />
+              <div className="absolute inset-x-2 top-8 h-px bg-white/10" />
             </div>
 
             <FileThumb
               z={10}
-              transform="translateX(calc(-50% + 0px)) translateY(-10px) rotate(-3deg)"
-              src="https://assets.aceternity.com/avatars/1.webp"
-              alt="File 1"
+              transform="translateX(calc(-50% + 0px)) translateY(-10px) rotate(-4deg)"
+              title="main.ts"
+              tag="TS"
             />
             <FileThumb
               z={11}
               transform="translateX(calc(-50% + 0px)) translateY(-8px)"
-              src="https://assets.aceternity.com/avatars/manu.webp"
-              alt="File 2"
+              title="workspace.json"
+              tag="CFG"
             />
             <FileThumb
               z={12}
-              transform="translateX(calc(-50% + 0px)) translateY(-6px) rotate(3deg)"
-              src="https://assets.aceternity.com/avatars/8.webp"
-              alt="File 3"
+              transform="translateX(calc(-50% + 0px)) translateY(-6px) rotate(4deg)"
+              title="agent.md"
+              tag="MD"
             />
 
             <div
-              className="absolute inset-x-0 bottom-0 h-[85%] origin-bottom rounded-lg bg-gradient-to-b from-amber-300 to-amber-400 shadow-sm dark:from-amber-400 dark:to-amber-500"
+              className="absolute inset-x-0 bottom-0 h-[85%] origin-bottom rounded-xl bg-gradient-to-b from-[#162a4d] to-[#0c1220] shadow-sm ring-1 ring-white/10"
               style={{
                 transformStyle: "preserve-3d",
                 zIndex: 20,
                 transform: "rotateX(-25deg)",
               }}
             >
-              <div className="absolute top-2 right-2 left-2 h-px bg-amber-200/50 dark:bg-amber-300/50" />
+              <div className="absolute top-2 right-2 left-2 h-px bg-white/10" />
+              <div className="absolute bottom-2 left-2 h-1.5 w-10 rounded-full bg-gradient-to-r from-cyan-400/60 to-blue-500/60" />
             </div>
           </div>
         </div>
 
-        {/* Document */}
-        <div className="relative" style={{ opacity: 1, transform: "none" }}>
+        {/* File Preview Panel */}
+        <div className="relative">
           <div
-            className="relative rounded-lg bg-gradient-to-b from-gray-50 to-gray-50 shadow-sm dark:from-neutral-700 dark:to-neutral-800"
-            style={{ width: 56, height: 72 }}
+            className="relative rounded-xl bg-gradient-to-b from-white/10 to-white/5 shadow-sm ring-1 ring-white/10"
+            style={{ width: 62, height: 78 }}
           >
-            <div className="absolute inset-x-1.5 top-1.5 h-3 rounded-sm bg-white shadow-sm ring-1 shadow-black/5 ring-black/5 dark:bg-neutral-900">
-              <div className="flex h-full items-center justify-center gap-0.5">
-                {Array.from({ length: 6 }).map((_, i) => (
-                  <div
-                    key={i}
-                    className="h-1.5 w-px bg-neutral-600 dark:bg-neutral-700"
-                  />
+            <div className="absolute inset-x-2 top-2 h-4 rounded-lg bg-black/40 ring-1 ring-white/10">
+              <div className="flex h-full items-center justify-center gap-1">
+                {Array.from({ length: 7 }).map((_, i) => (
+                  <div key={i} className="h-2 w-px bg-white/25" />
                 ))}
               </div>
             </div>
 
-            <div className="absolute right-1.5 bottom-1.5 left-1.5 flex flex-col gap-1">
+            <div className="absolute right-2 bottom-2 left-2 flex flex-col gap-1.5">
               <DocRow />
               <DocRow />
+              <DocRow mini />
             </div>
           </div>
         </div>
@@ -89,9 +86,9 @@ export function Files() {
 function Line({ opacity, x }: { opacity: number; x: string }) {
   return (
     <div className="relative h-px w-full">
-      <div className="absolute inset-0 border-t border-dashed border-neutral-200 dark:border-neutral-700" />
+      <div className="absolute inset-0 border-t border-dashed border-white/10" />
       <div
-        className="absolute top-0 h-px w-12 bg-gradient-to-r from-transparent via-blue-500 to-transparent"
+        className="absolute top-0 h-px w-14 bg-gradient-to-r from-transparent via-cyan-400 to-transparent"
         style={{ opacity, transform: `translateX(${x})` }}
       />
     </div>
@@ -101,28 +98,39 @@ function Line({ opacity, x }: { opacity: number; x: string }) {
 function FileThumb({
   z,
   transform,
-  src,
-  alt,
+  title,
+  tag,
 }: {
   z: number;
   transform: string;
-  src: string;
-  alt: string;
+  title: string;
+  tag: string;
 }) {
   return (
     <div
-      className="absolute top-1.5 left-1/2 origin-bottom overflow-hidden rounded bg-white shadow-sm ring-1 shadow-black/10 ring-black/10 dark:bg-neutral-800"
-      style={{ zIndex: z, transform, width: 36, height: 24 }}
+      className="absolute top-2 left-1/2 origin-bottom overflow-hidden rounded-lg bg-black/60 shadow-sm ring-1 ring-white/12"
+      style={{ zIndex: z, transform, width: 42, height: 26 }}
     >
-      <img alt={alt} className="h-full w-full object-cover" src={src} />
+      <div className="flex h-full w-full items-center justify-between px-2">
+        <span className="text-[8px] text-white/80 truncate">{title}</span>
+        <span className="text-[7px] px-1.5 py-0.5 rounded bg-white/10 text-white/70">
+          {tag}
+        </span>
+      </div>
     </div>
   );
 }
 
-function DocRow() {
+function DocRow({ mini }: { mini?: boolean }) {
   return (
-    <div className="h-4 rounded-sm bg-white shadow-sm ring-1 shadow-black/5 ring-black/5 dark:bg-neutral-800 dark:ring-white/10">
-      <div className="mt-1 ml-1 h-0.5 w-3 rounded-full bg-neutral-300 dark:bg-neutral-600" />
+    <div
+      className="rounded-lg bg-black/35 ring-1 ring-white/10"
+      style={{ height: mini ? 10 : 14 }}
+    >
+      <div className="mt-1 ml-1.5 h-0.5 w-6 rounded-full bg-white/25" />
+      {!mini && (
+        <div className="mt-1 ml-1.5 h-0.5 w-10 rounded-full bg-white/15" />
+      )}
     </div>
   );
 }

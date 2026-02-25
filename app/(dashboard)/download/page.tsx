@@ -10,11 +10,13 @@ import MeridiaLogo from "../../../public/logos/meridia-black.svg";
 import { Badge } from "@/components/ui/badge";
 import { AppWindow, Download, DownloadIcon, Pentagon } from "lucide-react";
 import Image from "next/image";
-import TargetCursor from "@/components/TargetCursor";
+import TargetCursor from "@/components/react-bits/TargetCursor";
 import dynamic from "next/dynamic";
 import { motion, type Variants } from "framer-motion";
 
-const DarkVeil = dynamic(() => import("@/components/DarkVeil"), { ssr: false });
+const DarkVeil = dynamic(() => import("@/components/react-bits/DarkVeil"), {
+  ssr: false,
+});
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
