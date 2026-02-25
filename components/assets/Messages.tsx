@@ -1,0 +1,87 @@
+export function Messages() {
+  const testimonials = [
+    {
+      text: "Aceternity UI is the best UI library I have ever used. It is very easy to use and very customizable.",
+      name: "Bill Gates",
+      role: "CEO of Microsoft",
+      img: "https://assets.aceternity.com/avatars/1.webp",
+      z: 10,
+    },
+    {
+      text: "The components are beautifully designed and saved us hundreds of hours of development time.",
+      name: "Sarah Chen",
+      role: "CTO at TechFlow",
+      img: "https://assets.aceternity.com/avatars/2.webp",
+      z: 9,
+    },
+    {
+      text: "I've tried many UI libraries, but Aceternity stands out with its attention to detail and smooth animations.",
+      name: "Marcus Johnson",
+      role: "Lead Developer at Stripe",
+      img: "https://assets.aceternity.com/avatars/3.webp",
+      z: 8,
+    },
+    {
+      text: "Our team productivity increased by 40% after switching to Aceternity UI. The documentation is excellent.",
+      name: "Emily Rodriguez",
+      role: "Product Manager at Vercel",
+      img: "https://assets.aceternity.com/avatars/4.webp",
+      z: 7,
+    },
+  ];
+
+  return (
+    <div className="h-48 w-full overflow-visible rounded-md md:h-full md:min-h-48">
+      <div className="relative flex h-full items-center overflow-hidden mask-x-from-90%">
+        <div className="flex items-stretch gap-3 px-4">
+          {testimonials.map((t, i) => (
+            <TestimonialCard key={i} {...t} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function TestimonialCard({
+  text,
+  name,
+  role,
+  img,
+  z,
+}: {
+  text: string;
+  name: string;
+  role: string;
+  img: string;
+  z: number;
+}) {
+  return (
+    <div className="group relative w-56 shrink-0 rounded-xl">
+      <div className="absolute inset-0 h-full w-full rounded-[inherit] bg-[image:repeating-linear-gradient(315deg,_var(--pattern-fg)_0,_var(--pattern-fg)_1px,_transparent_0,_transparent_50%)] bg-[size:5px_5px] bg-fixed shadow-sm ring-1 shadow-black/5 ring-black/5 dark:shadow-white/5 dark:ring-white/5" />
+
+      <div
+        className="relative flex h-full flex-col rounded-xl bg-[#171717] p-4 shadow-sm ring-1 shadow-black/5 ring-black/5 dark:bg-neutral-900 dark:shadow-white/5 dark:ring-white/10"
+        style={{ zIndex: z }}
+      >
+        <p className="mb-3 flex-1 text-xs leading-relaxed text-neutral-100">
+          {text}
+        </p>
+
+        <div className="flex items-center gap-2">
+          <img
+            alt={name}
+            className="size-5 rounded-full object-cover"
+            src={img}
+          />
+          <div>
+            <p className="text-[10px] font-medium text-neutral-100">{name}</p>
+            <p className="text-[8px] text-gray-500 dark:text-gray-400">
+              {role}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

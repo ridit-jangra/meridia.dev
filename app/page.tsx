@@ -1,4 +1,5 @@
 import { BeAmongFirst } from "@/components/BeAmongFirst";
+import { Features } from "@/components/Features";
 import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/Hero";
 import { Showcase } from "@/components/Showcase";
@@ -10,6 +11,7 @@ export default function Home() {
       <Hero />
       <WorkTogether />
       <Showcase />
+      <Features />
       <BeAmongFirst />
       <Footer />
     </div>

@@ -3,28 +3,55 @@
 import { Badge } from "./ui/badge";
 import { motion, type Variants } from "framer-motion";
 
-export function WorkTogether() {
-  const container: Variants = {
-    hidden: {},
-    show: { transition: { staggerChildren: 0.15 } },
-  };
+const ease = [0.16, 1, 0.3, 1] as const;
 
-  const item: Variants = {
-    hidden: { opacity: 0, y: 40 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
+const section: Variants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.14,
+      delayChildren: 0.05,
     },
-  };
+  },
+};
 
+const title: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.85, ease },
+  },
+};
+
+const container: Variants = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.15 },
+  },
+};
+
+const item: Variants = {
+  hidden: { opacity: 0, y: 40, scale: 0.985 },
+  show: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.7, ease },
+  },
+};
+
+export function WorkTogether() {
   return (
-    <div className="text-white w-full px-6 md:px-12 lg:px-20 py-12 lg:py-14 flex flex-col gap-8">
+    <motion.div
+      variants={section}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.2 }}
+      className="text-white w-full px-6 md:px-12 lg:px-20 py-12 lg:py-14 flex flex-col gap-8"
+    >
       <motion.span
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        viewport={{ once: true }}
+        variants={title}
         className="text-4xl md:text-5xl lg:text-[3rem] font-medium z-5"
       >
         You code. AI collaborates.
@@ -32,9 +59,6 @@ export function WorkTogether() {
 
       <motion.div
         variants={container}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
         className="flex flex-col md:flex-row gap-4 w-full"
       >
         <motion.div
@@ -70,6 +94,6 @@ export function WorkTogether() {
           </p>
         </motion.div>
       </motion.div>
-    </div>
+    </motion.div>
   );
 }

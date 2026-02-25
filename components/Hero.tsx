@@ -115,7 +115,10 @@ export function Hero() {
         </motion.ul>
       </div>
 
-      <span className="absolute bottom-[22%] left-[7%] text-white text-[7rem] z-10">
+      <span
+        className="absolute bottom-[22%] left-[7%] text-white text-[7rem] z-10"
+        onClick={() => router.push("/")}
+      >
         <ShinyText
           text="Meridia"
           speed={2}
