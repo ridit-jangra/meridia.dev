@@ -7,6 +7,7 @@ import {
   Plus_Jakarta_Sans,
 } from "next/font/google";
 import "./globals.css";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,11 +44,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${jetbrains.variable} ${jakarta.variable} antialiased`}
-      >
-        {children}
-      </body>
+      <TooltipProvider>
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${jetbrains.variable} ${jakarta.variable} antialiased`}
+        >
+          {children}
+        </body>
+      </TooltipProvider>
     </html>
   );
 }

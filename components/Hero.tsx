@@ -30,15 +30,15 @@ export function Hero() {
   return (
     <div
       style={{ width: "full", height: "100vh", position: "relative" }}
-      className="p-20"
+      className="p-6 sm:p-10 md:p-16 lg:p-20"
     >
-      <div className="absolute top-[13%] bg-transparent flex items-center justify-between w-[92%] px-20 text-white z-500">
-        <span className="text-2xl cursor-pointer relative after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full">
+      <div className="absolute top-[13%] bg-transparent flex items-center justify-between w-[92%] px-6 sm:px-10 md:px-16 lg:px-20 text-white z-500">
+        <span className="text-lg sm:text-xl md:text-2xl cursor-pointer relative after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full">
           Meridia
         </span>
         <div className="flex items-center gap-2 z-50">
           <button
-            className="bg-white/20 rounded-full font-jetbrains px-5 py-2 hover:bg-white/25 transition-colors cursor-pointer"
+            className="bg-white/20 rounded-full font-jetbrains text-sm sm:text-base px-4 sm:px-5 py-2 hover:bg-white/25 transition-colors cursor-pointer"
             onClick={() => router.push("/download")}
           >
             Start Building
@@ -47,7 +47,7 @@ export function Hero() {
       </div>
 
       <Grainient
-        className="rounded-[5rem]"
+        className="rounded-[3rem] sm:rounded-[4rem] lg:rounded-[5rem]"
         color1="#2f4f76"
         color2="#366c77"
         color3="#3f6f67"
@@ -80,11 +80,11 @@ export function Hero() {
         color="#ff8c42"
       />
 
-      <div className="absolute bottom-0 right-0 w-220 h-100 bg-[#0A0A0A] rounded-tl-[5rem] p-12 text-white/60">
-        <div className="absolute bottom-[20%] -left-[9%] w-20 h-20 overflow-hidden">
+      <div className="absolute bottom-0 right-0 w-full sm:w-[80%] md:w-[65%] lg:w-220 h-auto sm:h-auto lg:h-100 bg-[#0A0A0A] rounded-tl-[3rem] sm:rounded-tl-[4rem] lg:rounded-tl-[5rem] p-8 sm:p-10 lg:p-12 text-white/60">
+        <div className="absolute bottom-[20%] -left-[9%] w-16 sm:w-20 h-16 sm:h-20 overflow-hidden">
           <div className="absolute bottom-0 right-0 w-full h-full rounded-br-[5rem] shadow-[12px_12px_0_18px_black]" />
         </div>
-        <div className="absolute -top-[20.1%] right-[9.1%] w-20 h-20 overflow-hidden">
+        <div className="absolute -top-[20.1%] right-[9.1%] w-16 sm:w-20 h-16 sm:h-20 overflow-hidden">
           <div className="absolute bottom-0 right-0 w-full h-full rounded-br-[5rem] shadow-[12px_12px_0_18px_black]" />
         </div>
 
@@ -92,7 +92,7 @@ export function Hero() {
           variants={list}
           initial="hidden"
           animate="show"
-          className="absolute right-[12%] bottom-[20%] text-xl flex flex-col gap-5 items-end z-10"
+          className="absolute right-[8%] sm:right-[10%] lg:right-[12%] bottom-[20%] text-base sm:text-lg lg:text-xl flex flex-col gap-3 sm:gap-4 lg:gap-5 items-end z-10"
         >
           {["Documentation", "API Reference", "Get Started"].map((t) => (
             <motion.li
@@ -108,7 +108,8 @@ export function Hero() {
                 whileHover={{ x: 3 }}
                 transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
               >
-                <ArrowUpRight size={21} />
+                <ArrowUpRight size={18} className="sm:hidden" />
+                <ArrowUpRight size={21} className="hidden sm:block" />
               </motion.span>
             </motion.li>
           ))}
@@ -116,7 +117,7 @@ export function Hero() {
       </div>
 
       <span
-        className="absolute bottom-[22%] left-[7%] text-white text-[7rem] z-10"
+        className="absolute bottom-[22%] left-[5%] sm:left-[6%] lg:left-[7%] text-white text-[2.5rem] sm:text-[4rem] md:text-[5.5rem] lg:text-[7rem] z-10"
         onClick={() => router.push("/")}
       >
         <ShinyText
@@ -134,7 +135,7 @@ export function Hero() {
         />
       </span>
 
-      <span className="text-[5rem] text-white/80 absolute bottom-[12%] left-[7%] italic after:content-[''] after:absolute after:left-0 after:bottom-3 after:w-full after:h-px after:bg-white/80 z-5">
+      <span className="text-[1.5rem] sm:text-[2.5rem] md:text-[3.5rem] lg:text-[5rem] text-white/80 absolute bottom-[12%] left-[5%] sm:left-[6%] lg:left-[7%] italic after:content-[''] after:absolute after:left-0 after:bottom-3 after:w-full after:h-px after:bg-white/80 z-5">
         You code. AI assists.
       </span>
     </div>

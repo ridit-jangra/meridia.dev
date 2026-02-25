@@ -14,6 +14,7 @@
 
 import { motion, type Variants } from "framer-motion";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -56,6 +57,8 @@ const card: Variants = {
 };
 
 export function Showcase() {
+  const router = useRouter();
+
   const items = [
     "https://i.pinimg.com/736x/f5/3d/c7/f53dc7a7b3c8e24686681d08399b69d3.jpg",
     "https://i.pinimg.com/736x/96/8e/fe/968efec514a13c4debc3609132409008.jpg",
@@ -88,7 +91,10 @@ export function Showcase() {
       </motion.span>
 
       <motion.div variants={item} className="z-5">
-        <button className="bg-white text-black text-xl rounded-full font-jetbrains px-7 py-2 hover:bg-white/90 transition-colors cursor-pointer w-max">
+        <button
+          className="bg-white text-black text-xl rounded-full font-jetbrains px-7 py-2 hover:bg-white/90 transition-colors cursor-pointer w-max"
+          onClick={() => router.push("/discover")}
+        >
           Discover Meridia
         </button>
       </motion.div>
