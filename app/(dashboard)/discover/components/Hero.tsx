@@ -62,12 +62,12 @@ export function Hero() {
         </div>
       </div>
 
-      <span className="absolute top-20 left-30 text-white text-[5.6rem] z-20">
+      <span className="absolute top-20 left-30 text-white z-20 text-[2.4rem] sm:text-[3.4rem] md:text-[4.6rem] lg:text-[5.6rem] leading-[1.05]">
         Built for Developers <br />
         in the AI Era
       </span>
 
-      <span className="absolute text-white text-[2rem] bottom-30 left-30 font-medium z-5">
+      <span className="absolute text-white bottom-30 left-30 font-medium z-5 text-[1.15rem] sm:text-[1.4rem] md:text-[1.7rem] lg:text-[2rem] leading-tight">
         A{" "}
         <span className="relative italic font-regular after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-full after:h-px after:bg-white/80 z-5">
           platform

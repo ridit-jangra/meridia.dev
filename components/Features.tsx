@@ -42,30 +42,33 @@ export function Features() {
 
       <motion.div
         variants={item}
-        className="flex border border-white/20 rounded-2xl"
+        className="flex flex-col lg:flex-row border border-white/20 rounded-2xl overflow-hidden"
       >
-        <div className="flex flex-col border-r border-white/20">
-          <div className="flex border-b border-white/20 px-6 gap-5">
+        <div className="flex flex-col lg:border-r border-white/20">
+          <div className="flex flex-col md:flex-row border-b border-white/20">
             <motion.div
               variants={item}
-              className="border-r border-white/20 py-6 flex flex-col pr-6"
+              className="md:border-r border-white/20 p-6 flex flex-col gap-2 md:w-1/2"
             >
               <RealTime />
-              <span className="font-medium text-xl z-5">
+              <span className="font-medium text-lg sm:text-xl z-5">
                 Context-aware conversations
               </span>
-              <span className="text-[16px] text-white/70 z-5">
+              <span className="text-sm sm:text-[16px] text-white/70 z-5">
                 Chat with AI inside your codebase — grounded in your files, not
                 guesswork.
               </span>
             </motion.div>
 
-            <motion.div variants={item} className="py-6 flex flex-col">
+            <motion.div
+              variants={item}
+              className="p-6 flex flex-col gap-2 md:w-1/2"
+            >
               <Files />
-              <span className="font-medium text-xl z-5">
+              <span className="font-medium text-lg sm:text-xl z-5">
                 Workspace-level context
               </span>
-              <span className="text-[16px] text-white/70 z-5">
+              <span className="text-sm sm:text-[16px] text-white/70 z-5">
                 AI understands your project structure, history, and intent —
                 instantly.
               </span>
@@ -73,30 +76,30 @@ export function Features() {
           </div>
 
           <motion.div variants={item} className="p-6">
-            <div className="py-6 flex flex-col">
+            <div className="flex flex-col gap-2">
               <Messages />
-              <span className="font-medium text-xl z-5">
+              <span className="font-medium text-lg sm:text-xl z-5">
                 Built for real builders
               </span>
-              <span className="text-[16px] text-white/70 z-5">
+              <span className="text-sm sm:text-[16px] text-white/70 z-5">
                 Designed for developers who want control — not autopilot.
               </span>
             </div>
           </motion.div>
         </div>
 
-        <motion.div variants={item} className="py-6 w-full">
-          <div className="flex flex-col p-6 h-full">
-            <div className="h-full">
+        <motion.div variants={item} className="w-full p-6 flex flex-col gap-2">
+          <div className="w-full">
+            <div className="w-full h-[220px] sm:h-[280px] md:h-[340px] lg:h-full">
               <Collab />
             </div>
-            <span className="font-medium text-xl z-5">
-              Human × AI collaboration
-            </span>
-            <span className="text-[16px] text-white/70 z-5">
-              AI suggests. You decide. The loop stays yours.
-            </span>
           </div>
+          <span className="font-medium text-lg sm:text-xl z-5">
+            Human × AI collaboration
+          </span>
+          <span className="text-sm sm:text-[16px] text-white/70 z-5">
+            AI suggests. You decide. The loop stays yours.
+          </span>
         </motion.div>
       </motion.div>
     </motion.div>

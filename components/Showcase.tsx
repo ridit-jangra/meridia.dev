@@ -67,10 +67,10 @@ export function Showcase() {
   ];
 
   const heights = [
-    "h-[260px] md:h-[320px] lg:h-[380px]",
-    "h-[320px] md:h-[400px] lg:h-[480px]",
-    "h-[280px] md:h-[360px] lg:h-[420px]",
-    "h-[340px] md:h-[430px] lg:h-[520px]",
+    "h-[210px] xs:h-[240px] sm:h-[260px] md:h-[320px] lg:h-[380px]",
+    "h-[250px] xs:h-[290px] sm:h-[320px] md:h-[400px] lg:h-[480px]",
+    "h-[220px] xs:h-[250px] sm:h-[280px] md:h-[360px] lg:h-[420px]",
+    "h-[270px] xs:h-[310px] sm:h-[340px] md:h-[430px] lg:h-[520px]",
   ];
 
   return (
@@ -83,8 +83,8 @@ export function Showcase() {
     >
       <motion.span
         variants={item}
-        className="text-4xl md:text-5xl lg:text-[3rem] font-medium z-5"
-        style={{ lineHeight: "3.4rem" }}
+        className="text-3xl sm:text-4xl md:text-5xl lg:text-[3rem] font-medium z-5"
+        style={{ lineHeight: "1.08" }}
       >
         Code at the speed of thought.
         <br /> Create without limits.
@@ -92,7 +92,7 @@ export function Showcase() {
 
       <motion.div variants={item} className="z-5">
         <button
-          className="bg-white text-black text-xl rounded-full font-jetbrains px-7 py-2 hover:bg-white/90 transition-colors cursor-pointer w-max"
+          className="bg-white text-black text-base sm:text-lg md:text-xl rounded-full font-jetbrains px-5 sm:px-6 md:px-7 py-2 hover:bg-white/90 transition-colors cursor-pointer w-max"
           onClick={() => router.push("/discover")}
         >
           Discover Meridia
@@ -103,11 +103,11 @@ export function Showcase() {
         variants={rail}
         className="relative w-full overflow-hidden mt-2"
       >
-        <div className="pointer-events-none absolute left-0 top-0 h-full w-24 z-10" />
-        <div className="pointer-events-none absolute right-0 top-0 h-full w-24 z-10" />
+        <div className="pointer-events-none absolute left-0 top-0 h-full w-12 sm:w-16 md:w-24 z-10" />
+        <div className="pointer-events-none absolute right-0 top-0 h-full w-12 sm:w-16 md:w-24 z-10" />
 
         <div
-          className="flex flex-row gap-6 items-end horizontal-marquee w-max"
+          className="flex flex-row gap-4 sm:gap-5 md:gap-6 items-end horizontal-marquee w-max"
           style={{ ["--duration" as any]: "30s" }}
         >
           {[...items, ...items].map((src, i) => {
@@ -116,7 +116,7 @@ export function Showcase() {
               <motion.div
                 key={i}
                 variants={card}
-                className={`shrink-0 w-[240px] sm:w-[280px] md:w-[340px] lg:w-[380px] ${h} rounded-3xl overflow-hidden bg-white/5`}
+                className={`shrink-0 w-[200px] xs:w-[220px] sm:w-[280px] md:w-[340px] lg:w-[380px] ${h} rounded-3xl overflow-hidden bg-white/5`}
               >
                 <Image
                   src={src}
@@ -124,6 +124,8 @@ export function Showcase() {
                   width={1200}
                   height={1600}
                   className="h-full w-full object-cover"
+                  sizes="(max-width: 640px) 220px, (max-width: 768px) 280px, (max-width: 1024px) 340px, 380px"
+                  priority={i < 2}
                 />
               </motion.div>
             );

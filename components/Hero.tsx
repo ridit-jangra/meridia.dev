@@ -120,7 +120,9 @@ export function Hero() {
       </div>
 
       <span
-        className="absolute bottom-[22%] left-[5%] sm:left-[6%] lg:left-[7%] text-white text-[2.5rem] sm:text-[4rem] md:text-[5.5rem] lg:text-[7rem] z-10"
+        className="absolute bottom-[22%] left-[5%] sm:left-[6%] lg:left-[7%] text-white
+                   text-[2rem] xs:text-[2.3rem] sm:text-[4rem] md:text-[5.5rem] lg:text-[7rem]
+                   z-10"
         onClick={() => router.push("/")}
       >
         <ShinyText
@@ -138,7 +140,12 @@ export function Hero() {
         />
       </span>
 
-      <span className="text-[1.5rem] sm:text-[2.5rem] md:text-[3.5rem] lg:text-[5rem] text-white/80 absolute bottom-[12%] left-[5%] sm:left-[6%] lg:left-[7%] italic after:content-[''] after:absolute after:left-0 after:bottom-3 after:w-full after:h-px after:bg-white/80 z-5">
+      <span
+        className="text-white/80 absolute bottom-[12%] left-[5%] sm:left-[6%] lg:left-[7%] italic z-5
+                   text-[1.15rem] xs:text-[1.35rem] sm:text-[2.5rem] md:text-[3.5rem] lg:text-[5rem]
+                   after:content-[''] after:absolute after:left-0 after:w-full after:h-px after:bg-white/80
+                   after:bottom-1 sm:after:bottom-3"
+      >
         You code. AI assists.
       </span>
     </div>
