@@ -1,6 +1,6 @@
 "use client";
 
-import { DitherCursor } from "@/components/custom/DitherCursor";
+// import { DitherCursor } from "@/components/custom/DitherCursor";
 import { ArrowUpRight } from "lucide-react";
 import ShinyText from "./react-bits/ShinyText";
 import Grainient from "@/components/react-bits/Grainient";
@@ -72,13 +72,13 @@ export function Hero() {
         zoom={0.9}
       />
 
-      <DitherCursor
+      {/* <DitherCursor
         gravity={0.02}
         baseSize={2000}
         spawn={19}
         grid={15}
         color="#ff8c42"
-      />
+      /> */}
 
       <div className="absolute bottom-0 right-0 w-full sm:w-[80%] md:w-[65%] lg:w-220 h-auto sm:h-auto lg:h-100 bg-[#0A0A0A] rounded-tl-[3rem] sm:rounded-tl-[4rem] lg:rounded-tl-[5rem] p-8 sm:p-10 lg:p-12 text-white/60">
         <div className="absolute bottom-[20%] -left-[9%] w-16 sm:w-20 h-16 sm:h-20 overflow-hidden">
