@@ -7,8 +7,14 @@ import {
   Plus_Jakarta_Sans,
 } from "next/font/google";
 import "./globals.css";
-import { TooltipProvider } from "@/components/ui/tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { Navbar } from "@/components/Navbar";
+import { Github } from "lucide-react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -51,7 +57,15 @@ export default function RootLayout({
         >
           {children}
         </body>
-        {/* <Navbar /> */}
+
+        <a
+          href="https://github.com/ridit-jangra/Meridia"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="fixed top-10 right-10 z-50 bg-neutral-800 rounded-full hover:bg-neutral-700 transition-colors text-white/80 p-2"
+        >
+          <Github />
+        </a>
       </TooltipProvider>
     </html>
   );
