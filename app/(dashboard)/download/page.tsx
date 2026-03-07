@@ -54,6 +54,7 @@ type Release = {
 
 type VersionItem = {
   v: string;
+  prerelease: boolean;
   win: { label: string; url: string }[];
   linux: { label: string; url: string }[];
 };
@@ -131,7 +132,7 @@ export default function Page() {
         if (!res.ok) throw new Error(`GitHub API error: ${res.status}`);
         const data = (await res.json()) as Release[];
 
-        const releases = data.filter((r) => !r.draft && !r.prerelease);
+        const releases = data.filter((r) => !r.draft);
 
         const mapped: VersionItem[] = releases.map((r) => {
           const v = cleanVersion(r.tag_name || r.name || "");
@@ -149,7 +150,7 @@ export default function Page() {
               url: a.browser_download_url,
             }));
 
-          return { v, win, linux };
+          return { v, prerelease: r.prerelease, win, linux };
         });
 
         const filtered = mapped.filter(
@@ -267,6 +268,14 @@ export default function Page() {
                         variant="secondary"
                       >
                         Latest
+                      </Badge>
+                    )}
+                    {version.prerelease && (
+                      <Badge
+                        className="text-[12px] sm:text-[13px] px-3 py-0.5 mt-1"
+                        variant="destructive"
+                      >
+                        Pre-release
                       </Badge>
                     )}
                   </span>
