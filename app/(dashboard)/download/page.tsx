@@ -9,7 +9,13 @@ import {
 } from "@/components/ui/accordion";
 import MeridiaLogo from "../../../public/logos/meridia-black.svg";
 import { Badge } from "@/components/ui/badge";
-import { AppWindow, Download, DownloadIcon, Pentagon } from "lucide-react";
+import {
+  AppWindow,
+  Download,
+  DownloadIcon,
+  Pentagon,
+  Apple,
+} from "lucide-react";
 import Image from "next/image";
 import TargetCursor from "@/components/react-bits/TargetCursor";
 import dynamic from "next/dynamic";
@@ -56,6 +62,7 @@ type VersionItem = {
   v: string;
   prerelease: boolean;
   win: { label: string; url: string }[];
+  mac: { label: string; url: string }[];
   linux: { label: string; url: string }[];
 };
 
@@ -80,6 +87,19 @@ function pickLabel(name: string) {
   if (lower.includes(".deb")) return `Linux .deb${arch ? ` (${arch})` : ""}`;
   if (lower.includes(".rpm")) return `Linux .rpm${arch ? ` (${arch})` : ""}`;
 
+  if (lower.includes(".dmg")) return `macOS .dmg${arch ? ` (${arch})` : ""}`;
+  if (
+    lower.includes(".zip") &&
+    (lower.includes("mac") || lower.includes("darwin") || lower.includes("osx"))
+  )
+    return `macOS .zip${arch ? ` (${arch})` : ""}`;
+  if (
+    lower.includes("mac") ||
+    lower.includes("darwin") ||
+    lower.includes("osx")
+  )
+    return `macOS${arch ? ` (${arch})` : ""}`;
+
   if (lower.includes(".msi")) return `Windows .msi${arch ? ` (${arch})` : ""}`;
   if (lower.includes(".exe")) return `Windows .exe${arch ? ` (${arch})` : ""}`;
   if (
@@ -96,6 +116,8 @@ function pickLabel(name: string) {
 
 function isWindowsAsset(name: string) {
   const n = name.toLowerCase();
+  if (n.endsWith(".blockmap") || n.endsWith(".yml") || n.endsWith(".yaml"))
+    return false;
   return (
     n.includes("win") ||
     n.includes("windows") ||
@@ -105,8 +127,24 @@ function isWindowsAsset(name: string) {
   );
 }
 
+function isMacAsset(name: string) {
+  const n = name.toLowerCase();
+  if (n.endsWith(".blockmap") || n.endsWith(".yml") || n.endsWith(".yaml"))
+    return false;
+  return (
+    n.includes("mac") ||
+    n.includes("darwin") ||
+    n.includes("osx") ||
+    n.endsWith(".dmg") ||
+    (n.endsWith(".zip") &&
+      (n.includes("mac") || n.includes("darwin") || n.includes("osx")))
+  );
+}
+
 function isLinuxAsset(name: string) {
   const n = name.toLowerCase();
+  if (n.endsWith(".blockmap") || n.endsWith(".yml") || n.endsWith(".yaml"))
+    return false;
   return (
     n.includes("linux") ||
     n.endsWith(".appimage") ||
@@ -143,6 +181,13 @@ export default function Page() {
               url: a.browser_download_url,
             }));
 
+          const mac = r.assets
+            .filter((a) => isMacAsset(a.name))
+            .map((a) => ({
+              label: pickLabel(a.name),
+              url: a.browser_download_url,
+            }));
+
           const linux = r.assets
             .filter((a) => isLinuxAsset(a.name))
             .map((a) => ({
@@ -150,11 +195,11 @@ export default function Page() {
               url: a.browser_download_url,
             }));
 
-          return { v, prerelease: r.prerelease, win, linux };
+          return { v, prerelease: r.prerelease, win, mac, linux };
         });
 
         const filtered = mapped.filter(
-          (m) => m.v && (m.win.length || m.linux.length),
+          (m) => m.v && (m.win.length || m.mac.length || m.linux.length),
         );
         setVersions(filtered);
         setLatest(filtered[0]?.v ?? "");
@@ -221,7 +266,7 @@ export default function Page() {
               variants={up}
               className="text-white/80 text-[1.05rem] sm:text-[1.15rem] md:text-[1.3rem] mb-1"
             >
-              Available for Windows and Linux.
+              Available for Windows, macOS, and Linux.
             </motion.span>
 
             <motion.a
@@ -281,7 +326,8 @@ export default function Page() {
                   </span>
                 </AccordionTrigger>
 
-                <AccordionContent className="grid grid-cols-1 md:grid-cols-2 w-full items-start gap-4 sm:gap-5">
+                <AccordionContent className="grid grid-cols-1 md:grid-cols-3 w-full items-start gap-4 sm:gap-5">
+                  {/* Windows */}
                   <div className="bg-neutral-900 rounded-2xl w-full">
                     <span className="flex items-center gap-2 text-base sm:text-lg pb-2 pt-4 border-b border-white/13 px-4 mb-1">
                       <AppWindow />
@@ -307,6 +353,33 @@ export default function Page() {
                     </div>
                   </div>
 
+                  {/* macOS */}
+                  <div className="bg-neutral-900 rounded-2xl w-full">
+                    <span className="flex items-center gap-2 text-base sm:text-lg pb-2 pt-4 border-b border-white/13 px-4 mb-1">
+                      <Apple />
+                      macOS
+                    </span>
+                    <div className="flex flex-col">
+                      {version.mac.length ? (
+                        version.mac.map((w) => (
+                          <a
+                            key={w.url}
+                            href={w.url}
+                            className="w-full cursor-target text-[14px] sm:text-[15px] px-4 py-3 hover:bg-neutral-800 transition-colors last:rounded-b-2xl cursor-pointer flex items-center justify-between text-white/30 hover:text-white/90"
+                          >
+                            <p className="text-white/90">{w.label}</p>
+                            <Download size={21} />
+                          </a>
+                        ))
+                      ) : (
+                        <div className="px-4 py-3 text-white/40 text-sm">
+                          No macOS builds found for this release.
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Linux */}
                   <div className="bg-neutral-900 rounded-2xl w-full">
                     <span className="flex items-center gap-2 text-base sm:text-lg pb-2 pt-4 border-b border-white/13 px-4 mb-1">
                       <Pentagon />
