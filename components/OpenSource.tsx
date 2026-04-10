@@ -34,7 +34,7 @@ export function OpenSource() {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, amount: 0.3 }}
-      className="text-white bg-neutral-900 w-full h-[50vh] mb-20y px-6 md:px-12 lg:px-20 py-12 lg:py-14 flex flex-col gap-8 items-center justify-center"
+      className="text-white bg-neutral-900 w-full h-[50vh] mb-20 px-6 md:px-12 lg:px-20 py-12 lg:py-14 flex flex-col gap-8 items-center justify-center"
     >
       <motion.span
         variants={item}

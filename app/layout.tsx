@@ -5,16 +5,12 @@ import {
   Inter,
   JetBrains_Mono,
   Plus_Jakarta_Sans,
+  Instrument_Serif,
 } from "next/font/google";
 import "./globals.css";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { Navbar } from "@/components/Navbar";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { Github } from "lucide-react";
+import { Menu } from "@/components/Menu";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,6 +35,13 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument",
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+});
+
 export const metadata: Metadata = {
   title: "Meridia",
   description: "Created by ridit jangra",
@@ -53,19 +56,11 @@ export default function RootLayout({
     <html lang="en">
       <TooltipProvider>
         <body
-          className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${jetbrains.variable} ${jakarta.variable} antialiased`}
+          className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${instrumentSerif.variable} ${jetbrains.variable} ${jakarta.variable} antialiased`}
         >
+          <Menu />
           {children}
         </body>
-
-        <a
-          href="https://github.com/ridit-jangra/Meridia"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="fixed top-10 right-10 z-50 bg-neutral-800 rounded-full hover:bg-neutral-700 transition-colors text-white/80 p-2"
-        >
-          <Github />
-        </a>
       </TooltipProvider>
     </html>
   );

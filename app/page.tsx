@@ -4,7 +4,6 @@ import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/Hero";
 import { OpenSource } from "@/components/OpenSource";
 import { Showcase } from "@/components/Showcase";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { WorkTogether } from "@/components/WorkTogether";
 
 export default function Home() {
