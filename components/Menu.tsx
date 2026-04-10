@@ -13,7 +13,7 @@ export function Menu() {
           alt="meridia"
           width={32}
           height={32}
-          className="sm:w-[40px] sm:h-[40px]"
+          // className="sm:w-[40px] sm:h-[40px]"
         />
         Meridia
       </span>

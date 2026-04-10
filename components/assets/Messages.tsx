@@ -4,28 +4,28 @@ export function Messages() {
       text: "Meridia feels like a teammate that understands my repo. It suggests the right moves, but I stay in control.",
       name: "Aarav",
       role: "Full-stack Developer",
-      img: "/avatars/dev-1.png",
+      // img: "/avatars/dev-1.png",
       z: 10,
     },
     {
       text: "The best part is the workflow. Prompts, context, tools — everything is structured instead of messy chat logs.",
       name: "Meera",
       role: "Frontend Engineer",
-      img: "/avatars/dev-2.png",
+      // img: "/avatars/dev-2.png",
       z: 9,
     },
     {
       text: "It doesn’t hallucinate random code. Meridia actually uses project context and asks before changing things.",
       name: "Ishan",
       role: "Backend Engineer",
-      img: "/avatars/dev-3.png",
+      // img: "/avatars/dev-3.png",
       z: 8,
     },
     {
       text: "AI suggestions are useful, but the UI makes it feel safe. Nothing happens unless I approve it.",
       name: "Naina",
       role: "Product-minded Developer",
-      img: "/avatars/dev-4.png",
+      // img: "/avatars/dev-4.png",
       z: 7,
     },
   ];
@@ -47,13 +47,13 @@ function TestimonialCard({
   text,
   name,
   role,
-  img,
+  // img,
   z,
 }: {
   text: string;
   name: string;
   role: string;
-  img: string;
+  // img: string;
   z: number;
 }) {
   return (
@@ -69,11 +69,11 @@ function TestimonialCard({
         </p>
 
         <div className="flex items-center gap-2">
-          <img
+          {/* <img
             alt={name}
             className="size-5 rounded-full object-cover"
             src={img}
-          />
+          /> */}
           <div>
             <p className="text-[10px] font-medium text-neutral-100">{name}</p>
             <p className="text-[8px] text-gray-500 dark:text-gray-400">

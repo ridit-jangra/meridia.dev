@@ -3,25 +3,25 @@ export function RealTime() {
     {
       text: "Refactor the auth middleware to support role-based access.",
       name: "You",
-      img: "/avatars/user.png",
+      // img: "/avatars/user.png",
       reverse: true,
     },
     {
       text: "Found 3 files using the current middleware. Should I update all of them?",
       name: "Meridia",
-      img: "/avatars/ai.png",
+      // img: "/avatars/ai.png",
       reverse: false,
     },
     {
       text: "Yes. But keep backward compatibility for legacy routes.",
       name: "You",
-      img: "/avatars/user.png",
+      // img: "/avatars/user.png",
       reverse: true,
     },
     {
       text: "Done. Added a fallback layer and updated route guards.",
       name: "Meridia",
-      img: "/avatars/ai.png",
+      // img: "/avatars/ai.png",
       reverse: false,
     },
   ];
@@ -42,23 +42,23 @@ export function RealTime() {
 function MessageBubble({
   text,
   name,
-  img,
+  // img,
   reverse,
 }: {
   text: string;
   name: string;
-  img: string;
+  // img: string;
   reverse?: boolean;
 }) {
   return (
     <div
       className={`flex items-start gap-2 ${reverse ? "flex-row-reverse" : ""}`}
     >
-      <img
+      {/* <img
         alt={name}
         src={img}
         className="size-5 shrink-0 rounded-full object-cover"
-      />
+      /> */}
 
       <div
         className={`rounded-lg px-3 py-1.5 text-xs shadow-sm ring-1 ${

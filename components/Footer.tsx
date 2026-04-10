@@ -2,9 +2,9 @@ import Image from "next/image";
 
 export function Footer() {
   return (
-    <div className="flex flex-col gap-10 w-full text-white px-6 md:px-12 lg:px-20 pb-20">
-      <div className="flex flex-col lg:flex-row gap-12 lg:gap-32 z-5">
-        <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-10 w-full text-white px-5 sm:px-10 md:px-16 lg:px-20 pb-16 sm:pb-20">
+      <div className="flex flex-col lg:flex-row gap-10 lg:gap-32">
+        <div className="flex flex-col gap-4 shrink-0">
           <span className="text-xl font-medium flex gap-2 items-center">
             <Image
               src={"/logos/meridia-black.svg"}
@@ -14,17 +14,16 @@ export function Footer() {
             />
             Meridia
           </span>
-
-          <p className="text-[18px] text-white/70 max-w-sm">
+          <p className="text-base sm:text-[18px] text-white/70 max-w-sm">
             Build with intention. <br />
             Let AI assist — not replace.
           </p>
         </div>
 
-        <div className="flex flex-col md:flex-row border border-white/20 w-full z-5">
-          <div className="p-7 hover:bg-[#1a1a1a] transition-colors border-b md:border-b-0 md:border-r border-white/10 md:w-1/3">
-            <span className="font-medium">Product</span>
-            <ul className="mt-4 text-white/60 flex flex-col gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 border border-white/20 w-full">
+          <div className="p-5 sm:p-7 hover:bg-[#1a1a1a] transition-colors border-b sm:border-b-0 border-r border-white/10">
+            <span className="font-medium text-sm sm:text-base">Product</span>
+            <ul className="mt-3 sm:mt-4 text-white/60 flex flex-col gap-2 sm:gap-3 text-sm sm:text-base">
               <li className="cursor-pointer hover:text-white transition-colors">
                 How It Works
               </li>
@@ -40,9 +39,9 @@ export function Footer() {
             </ul>
           </div>
 
-          <div className="p-7 hover:bg-[#1a1a1a] transition-colors border-b md:border-b-0 md:border-r border-white/10 md:w-1/3">
-            <span className="font-medium">Developers</span>
-            <ul className="mt-4 text-white/60 flex flex-col gap-3">
+          <div className="p-5 sm:p-7 hover:bg-[#1a1a1a] transition-colors border-b sm:border-b-0 sm:border-r border-white/10">
+            <span className="font-medium text-sm sm:text-base">Developers</span>
+            <ul className="mt-3 sm:mt-4 text-white/60 flex flex-col gap-2 sm:gap-3 text-sm sm:text-base">
               <li className="cursor-pointer hover:text-white transition-colors">
                 Documentation
               </li>
@@ -58,9 +57,9 @@ export function Footer() {
             </ul>
           </div>
 
-          <div className="p-7 hover:bg-[#1a1a1a] transition-colors md:w-1/3">
-            <span className="font-medium">Company</span>
-            <ul className="mt-4 text-white/60 flex flex-col gap-3">
+          <div className="col-span-2 sm:col-span-1 p-5 sm:p-7 hover:bg-[#1a1a1a] transition-colors">
+            <span className="font-medium text-sm sm:text-base">Company</span>
+            <ul className="mt-3 sm:mt-4 text-white/60 flex flex-col gap-2 sm:gap-3 text-sm sm:text-base">
               <li className="cursor-pointer hover:text-white transition-colors">
                 Vision
               </li>
@@ -78,7 +77,10 @@ export function Footer() {
         </div>
       </div>
 
-      <span className="text-white/10 font-bold text-[25rem] text-center select-none z-5">
+      <span
+        className="text-white/10 font-bold select-none text-center leading-none
+        text-[5rem] xs:text-[7rem] sm:text-[8rem] md:text-[14rem] lg:text-[18rem] xl:text-[22rem]"
+      >
         MERIDIA
       </span>
     </div>

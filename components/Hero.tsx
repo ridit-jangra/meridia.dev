@@ -8,14 +8,14 @@ export function Hero() {
 
   return (
     <div className="relative w-full px-5 py-10 sm:px-10 sm:py-14 md:px-16 md:py-20 lg:px-20 lg:py-24 flex flex-col gap-6">
-      <div className="flex flex-col w-max">
+      <div className="flex flex-col w-max mb-2">
         <span
           className="
             text-white/80 italic relative z-10
             text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl
             leading-tight
             after:content-[''] after:absolute after:left-0 after:w-full after:h-px
-            after:bg-white/80 after:-bottom-1 sm:after:-bottom-2
+            after:bg-white/80 after:-bottom-2 sm:after:-bottom-2
           "
         >
           You code. AI assists.
