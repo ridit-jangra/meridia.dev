@@ -79,7 +79,7 @@ export function Footer() {
 
       <span
         className="text-white/10 font-bold select-none text-center leading-none
-        text-[5rem] xs:text-[7rem] sm:text-[8rem] md:text-[14rem] lg:text-[18rem] xl:text-[22rem]"
+        text-[5rem] xs:text-[7rem] sm:text-[8rem] md:text-[14rem] lg:text-[18rem] xl:text-[17rem] 2xl:text-[15rem]"
       >
         MERIDIA
       </span>
